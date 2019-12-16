@@ -13,8 +13,6 @@ fi
 /usr/bin/git -C /root/app pull
 pip3 install -r /root/app/requirements.txt
 
-exec /usr/local/bin/chromedriver --disable-dev-shm-usage &>/dev/null &
-
 # Run the main server python script
 exec env PORT=8080 python3 /root/app/server.py
 

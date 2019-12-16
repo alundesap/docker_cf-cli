@@ -6,6 +6,7 @@ ENV PORT "8080"
 # Install runtime dependencies
 RUN apt-get update \
  && apt-get install -y --no-install-recommends --assume-yes \
+        procps \
         apt-utils \
         ca-certificates \
         bzip2 \
@@ -25,16 +26,6 @@ RUN apt-get update \
  && mkdir /run/sshd \
  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
  && echo "root:Nirvana8484" | chpasswd \
- && curl -Lo /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
- && gdebi -n /tmp/google-chrome-stable_current_amd64.deb \
-# && dpkg -i /tmp/google-chrome-stable_current_amd64.deb \
-# && apt-get -f install \
- && wget -N http://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/ \
- && unzip ~/chromedriver_linux64.zip -d ~/ \
- && rm ~/chromedriver_linux64.zip \
- && mv -f ~/chromedriver /usr/local/bin/chromedriver \
- && chown root:root /usr/local/bin/chromedriver \
- && chmod 0755 /usr/local/bin/chromedriver \
  && echo "Last command in RUN" \
  && apt-get clean \
 # && echo "WGET Master" \
@@ -43,7 +34,7 @@ RUN apt-get update \
  && echo "Done!"
 RUN echo "Git Clone" \
  && mkdir -p /root/app \
- && /usr/bin/git clone https://github.com/alundesap/module_headless.git /root/app \
+ && /usr/bin/git clone https://github.com/alundesap/module_cf-cli.git /root/app \
  && echo "export PATH=\$PATH:/usr/local/bin:/usr/local/sbin" >> /root/.bashrc \
  && echo "export PORT=8080" >> /root/.bashrc \
  && echo "Done!"

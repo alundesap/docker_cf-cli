@@ -1,11 +1,11 @@
 # docker_opensuse
 
 ```
-cd /Users/i830671/git/docker_headless
+cd /Users/i830671/git/docker_cf-cli
 
-docker build -t alunde/headless:latest .
+docker build -t alunde/cf-cli:latest .
 
-docker run -ti -p 2222:22 alunde/headless:latest
+docker run -ti -p 2222:22 alunde/cf-cli:latest
 
 ```
 Connect with:
